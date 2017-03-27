@@ -1,0 +1,6 @@
+com.medica.jni
+com.medica.restonsdk
+com.medica.restonsdk.bluetooth
+com.medica.restonsdk.domain
+com.medica.restonsdk.interfs
+com.medica.restonsdk.util
