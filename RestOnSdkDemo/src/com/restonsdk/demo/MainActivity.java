@@ -98,10 +98,10 @@ public class MainActivity extends Activity{
 				startActivityForResult(intent, REQCODE_SEACH_DEVICE);
 			}else{
 				
-				if(selectedBleDevice == null){
+				/*if(selectedBleDevice == null){
 					Toast.makeText(MainActivity.this, "请先选择设备", Toast.LENGTH_SHORT).show();
 					return;
-				}
+				}*/
 				
 				if(position == 1){//连接设备
 					restonHelper.connDevice(selectedBleDevice, resultCallback);
@@ -164,7 +164,7 @@ public class MainActivity extends Activity{
 					restonHelper.getDeviceVersion(resultCallback);
 				}else if(position == 19){//固件升级
 					//File file = null;
-					//restonHelper.upgradeFirmwareByThread(Constants.DEVICE_TYPE_RESTON_Z1, 3.0f, 0, 0, file, upgradeCallback);
+					//restonHelper.upgradeFirmwareByThread(Constants.DEVICE_TYPE_RESTON_Z2, 3.0f, 0, 0, file, upgradeCallback);
 				}else if(position == 20){//登出设备
 					restonHelper.logout(resultCallback);
 				}else if(position == 21){//断开设备
