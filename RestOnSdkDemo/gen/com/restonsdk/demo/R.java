@@ -31,7 +31,53 @@ public final class R {
         public static final int grid_item=0x7f030004;
     }
     public static final class string {
+        public static final int Raw_data_closed=0x7f050023;
+        public static final int analysis=0x7f05000f;
         public static final int app_name=0x7f050000;
+        public static final int auto_monitor_config=0x7f050011;
+        public static final int collect_stoped=0x7f050024;
+        public static final int config_fail=0x7f050028;
+        public static final int config_succ=0x7f050027;
+        public static final int conn_fail=0x7f050018;
+        public static final int conn_succ=0x7f050017;
+        public static final int current_version=0x7f050013;
+        public static final int detail_data=0x7f05000e;
+        public static final int device_collecting=0x7f050020;
+        public static final int device_conn=0x7f050002;
+        public static final int device_power=0x7f050006;
+        public static final int device_scan=0x7f050001;
+        public static final int device_state=0x7f050005;
+        public static final int device_upgrade=0x7f050014;
+        public static final int disconnect_device=0x7f050016;
+        public static final int get_device_id=0x7f050003;
+        public static final int get_power_fail=0x7f05001e;
+        public static final int get_status_fail=0x7f05001b;
+        public static final int get_version_fail=0x7f050029;
+        public static final int login_device=0x7f050004;
+        public static final int login_fail=0x7f05001a;
+        public static final int login_succ=0x7f050019;
+        public static final int logout_device=0x7f050015;
+        public static final int logout_fail=0x7f05002b;
+        public static final int logout_succ=0x7f05002a;
+        public static final int no_device=0x7f05002e;
+        public static final int opt_fail=0x7f050021;
+        public static final int original_data=0x7f050009;
+        public static final int power_avail=0x7f05001f;
+        public static final int power_warning_stop_fail=0x7f050026;
+        public static final int power_warning_stoped=0x7f050025;
+        public static final int realtime_closed=0x7f050022;
+        public static final int realtime_data=0x7f050008;
+        public static final int scaning=0x7f05002d;
+        public static final int select_device=0x7f05002c;
+        public static final int smart_clock_config=0x7f050012;
+        public static final int start_collect=0x7f050007;
+        public static final int status_collecting=0x7f05001d;
+        public static final int status_uncollect=0x7f05001c;
+        public static final int stop_collect=0x7f05000c;
+        public static final int stop_original_data=0x7f05000a;
+        public static final int stop_power_warn=0x7f050010;
+        public static final int stop_realtime_data=0x7f05000b;
+        public static final int summary_data=0x7f05000d;
     }
     public static final class style {
         /** 
@@ -43,9 +89,20 @@ public final class R {
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
          */
         public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;

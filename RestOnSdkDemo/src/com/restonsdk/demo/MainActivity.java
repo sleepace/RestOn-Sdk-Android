@@ -1,25 +1,11 @@
 package com.restonsdk.demo;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-
-import com.medica.jni.SleepAnalysis_Out;
-import com.medica.jni.SleepHelperJni;
-import com.medica.restonsdk.Constants;
-import com.medica.restonsdk.bluetooth.RestOnHelper;
-import com.medica.restonsdk.domain.BleDevice;
-import com.medica.restonsdk.domain.Detail;
-import com.medica.restonsdk.domain.RealTimeData;
-import com.medica.restonsdk.domain.Summary;
-import com.medica.restonsdk.interfs.BleStateChangedListener;
-import com.medica.restonsdk.interfs.Method;
-import com.medica.restonsdk.interfs.RawDataCallback;
-import com.medica.restonsdk.interfs.RealtimeDataCallback;
-import com.medica.restonsdk.interfs.ResultCallback;
-import com.medica.restonsdk.interfs.UpgradeCallback;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -38,12 +24,25 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.medica.jni.SleepAnalysis_Out;
+import com.medica.jni.SleepHelperJni;
+import com.medica.restonsdk.Constants;
+import com.medica.restonsdk.bluetooth.RestOnHelper;
+import com.medica.restonsdk.domain.BleDevice;
+import com.medica.restonsdk.domain.Detail;
+import com.medica.restonsdk.domain.RealTimeData;
+import com.medica.restonsdk.domain.Summary;
+import com.medica.restonsdk.interfs.BleStateChangedListener;
+import com.medica.restonsdk.interfs.Method;
+import com.medica.restonsdk.interfs.RawDataCallback;
+import com.medica.restonsdk.interfs.RealtimeDataCallback;
+import com.medica.restonsdk.interfs.ResultCallback;
+import com.medica.restonsdk.interfs.UpgradeCallback;
+
 public class MainActivity extends Activity{
 	private static final String TAG = MainActivity.class.getSimpleName();
 	
-	private static final String[] ITEMS = { "搜索设备", "连接设备", "获取设备ID", "登录设备", "设备状态", "获取电量",  "开始采集", "查看实时数据",
-		"查看原始数据", "关闭实时数据", "关闭原始数据", "停止采集", "查询概要信息", "查询详细信息", "睡眠分析", "关闭低电量警告", "设置自动监测", "设置智能闹钟", 
-		"当前版本", "固件升级", "登出设备", "断开连接"};
+	private static  String[] ITEMS ;
 	
 	private GridView gridView;
 	private GridAdapter adapter;
@@ -64,7 +63,17 @@ public class MainActivity extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+		/**
+		 * { "搜索设备", "连接设备", "获取设备ID", "登录设备", "设备状态", "获取电量",  "开始采集", "查看实时数据",
+		"查看原始数据", "关闭实时数据", "关闭原始数据", "停止采集", "查询概要信息", "查询详细信息", "睡眠分析", "关闭低电量警告", "设置自动监测", "设置智能闹钟", 
+"当前版本", "固件升级", "登出设备", "断开连接"};
+		 */
+		ITEMS = new String[]{
+				this.getString(R.string.device_scan),this.getString(R.string.device_conn),this.getString(R.string.get_device_id),this.getString(R.string.login_device),this.getString(R.string.device_state),this.getString(R.string.device_power),this.getString(R.string.start_collect
+				),this.getString(R.string.realtime_data),this.getString(R.string.original_data),this.getString(R.string.stop_realtime_data),this.getString(R.string.stop_original_data),this.getString(R.string.stop_collect),
+				this.getString(R.string.summary_data),this.getString(R.string.detail_data
+				),this.getString(R.string.analysis),this.getString(R.string.stop_power_warn),this.getString(R.string.auto_monitor_config),this.getString(R.string.smart_clock_config),this.getString(R.string.current_version),this.getString(R.string.device_upgrade),this.getString(R.string.disconnect_device)
+			};
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
@@ -87,13 +96,13 @@ public class MainActivity extends Activity{
 			// TODO Auto-generated method stub
 //			LogUtil.showMsg(TAG+" onItemClick pos:"+position);
 			if(!restonHelper.isBluetoothOpen()){
-				//注意：打开和关闭蓝牙的过程，是异步的
+				
 				Intent enabler = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 				startActivityForResult(enabler,REQCODE_OPEN_BT);
 				return;
 			}
 			
-			if(position == 0){//搜索设备
+			if(position == 0){
 				Intent intent = new Intent(MainActivity.this, SearchDeviceActivity.class);
 				startActivityForResult(intent, REQCODE_SEACH_DEVICE);
 			}else{
@@ -103,29 +112,29 @@ public class MainActivity extends Activity{
 					return;
 				}*/
 				
-				if(position == 1){//连接设备
+				if(position == 1){
 					restonHelper.connDevice(selectedBleDevice, resultCallback);
-				}else if(position == 2){//获取设备id
+				}else if(position == 2){
 					restonHelper.getDeviceId(resultCallback);
-				}else if(position == 3){//登录设备
+				}else if(position == 3){
 					restonHelper.loginDevice(selectedBleDevice, userId, resultCallback);
-				}else if(position == 4){//设备状态
+				}else if(position == 4){
 					restonHelper.getDeviceStatus(resultCallback);
-				}else if(position == 5){//获取电量 该接口需要固件2.40及以上版本才支持
+				}else if(position == 5){
 					restonHelper.getDevicePower(resultCallback);
-				}else if(position == 6){//开始采集
+				}else if(position == 6){
 					restonHelper.startCollect(resultCallback);
-				}else if(position == 7){//查看实时数据
+				}else if(position == 7){
 					restonHelper.seeRealtimeData(realtimeDataCallback);
-				}else if(position == 8){//查看原始数据
+				}else if(position == 8){
 					restonHelper.seeRawData(rawDataCallback);
-				}else if(position == 9){//关闭实时数据
+				}else if(position == 9){
 					restonHelper.closeRealtimeData(resultCallback);
-				}else if(position == 10){//关闭原始数据
+				}else if(position == 10){
 					restonHelper.closeRawData(resultCallback);
-				}else if(position == 11){//停止采集
+				}else if(position == 11){
 					restonHelper.stopCollect(resultCallback);
-				}else if(position == 12){//查询概要信息
+				}else if(position == 12){
 					Calendar calendar = Calendar.getInstance();
 					int endTime = (int) (calendar.getTimeInMillis() / 1000);
 					calendar.add(Calendar.DAY_OF_MONTH, -100);
@@ -133,26 +142,26 @@ public class MainActivity extends Activity{
 					LogUtil.showMsg(TAG+" queryHistorySummary stime:" + dateFormat.format(new Date(startTime * 1000l))+
 							",etime:"+ dateFormat.format(new Date(endTime * 1000l)));
 					restonHelper.queryHistorySummary(startTime, endTime, resultCallback);
-				}else if(position == 13){//查询详细信息
+				}else if(position == 13){
 					restonHelper.queryHistoryDetail(summary, resultCallback);
-				}else if(position == 14){//睡眠分析
+				}else if(position == 14){
 					if(summary != null && detail != null){
 						SleepAnalysis_Out analysis = SleepHelperJni.analysis(summary.startTime, (int)(summary.timezone * 60 * 60), 1, 60, summary.recordCount, detail.breathRate, detail.heartRate, detail.status, detail.statusValue, Constants.DEVICE_TYPE_RESTON_Z2);
 						int score = analysis == null ? -1 : analysis.sleepScore;
 						LogUtil.showMsg(TAG+" analysis score:" + score);
 					}
-				}else if(position == 15){//关闭低电量提醒
+				}else if(position == 15){//stop power warning
 					restonHelper.closeLowPowerWarn(resultCallback);
-				}else if(position == 16){//自动开始监测
+				}else if(position == 16){//auto monitor
 					byte enable = 1;
 					Calendar cal = Calendar.getInstance();
-					cal.add(Calendar.MINUTE, 1);//1分钟后开始自动监测，可以通过查询设备状态来验证该功能
+					cal.add(Calendar.MINUTE, 1);
 					byte hour = (byte) cal.get(Calendar.HOUR_OF_DAY);
 					byte minute = (byte) cal.get(Calendar.MINUTE);
 					byte repeat = 127;
 					LogUtil.showMsg(TAG+" setAutoStart h:" + hour+",m:" + minute);
 					restonHelper.setAutoStart(enable, hour, minute, repeat, resultCallback);
-				}else if(position == 17){//设置智能闹钟
+				}else if(position == 17){//smart alarm clock
 					byte alartOFF = 1;
 					byte autoGet = 1;
 					byte autoMove = 30;
@@ -160,14 +169,18 @@ public class MainActivity extends Activity{
 					byte minute = 0;
 					byte repeat = 0;
 					restonHelper.setAlarmTime(alartOFF, autoGet, autoMove, hourOfDay, minute, repeat, resultCallback);
-				}else if(position == 18){//当前版本
+				}else if(position == 18){//current version
 					restonHelper.getDeviceVersion(resultCallback);
-				}else if(position == 19){//固件升级
-					//File file = null;
-					//restonHelper.upgradeFirmwareByThread(Constants.DEVICE_TYPE_RESTON_Z2, 3.0f, 0, 0, file, upgradeCallback);
-				}else if(position == 20){//登出设备
+				}else if(position == 19){//upgrade
+					/*File file = new File("/storage/emulated/0/b.des");
+					long crcDes= 2473374035L;
+					long crcBin= 404487962;
+					restonHelper.upgradeFirmware(Constants.DEVICE_TYPE_RESTON_Z2,1.17f, (int)crcBin, (int)crcDes, file, upgradeCallback);                    
+                    
+                    */
+				}else if(position == 20){//logout
 					restonHelper.logout(resultCallback);
-				}else if(position == 21){//断开设备
+				}else if(position == 21){//disconnect
 					restonHelper.disconnect();
 				}
 			}
@@ -186,16 +199,16 @@ public class MainActivity extends Activity{
 					if(method == Method.CONNECT_DEVICE){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "连接成功", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.conn_succ), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "连接失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.opt_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.GET_DEVICE_ID){
 						String deviceId = (String) result;
 						if(deviceId == null){
-							Toast.makeText(MainActivity.this, "获取失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.opt_fail), Toast.LENGTH_SHORT).show();
 						}else{
 							selectedBleDevice.deviceId = deviceId;
 						}
@@ -204,65 +217,65 @@ public class MainActivity extends Activity{
 					else if(method == Method.LOGIN){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.login_succ), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.login_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.GET_DEVICE_STATUS){
 						Integer res = (Integer) result;
 						if(res == -1){
-							Toast.makeText(MainActivity.this, "获取设备状态失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.opt_fail), Toast.LENGTH_SHORT).show();
 						}else if(res == 0){
-							Toast.makeText(MainActivity.this, "设备状态：非采集状态", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this,  MainActivity.this.getString(R.string.status_uncollect), Toast.LENGTH_SHORT).show();
 						}else if(res == 1){
-							Toast.makeText(MainActivity.this, "设备状态：采集状态", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this,  MainActivity.this.getString(R.string.status_collecting), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.GET_DEVICE_POWER){//电量低于10%时，会有低电量警告
 						Integer res = (Integer) result;
 						if(res == -1){
-							Toast.makeText(MainActivity.this, "获取电量失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this,  MainActivity.this.getString(R.string.get_power_fail), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "可用电量:" + res + "%", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.power_avail) + res + "%", Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.START_COLLECT){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "设备已开始采集", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.device_collecting), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.opt_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.CLOSE_REALTIME_DATA){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "设备关闭实时数据", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.realtime_closed), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.opt_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.CLOSE_RAW_DATA){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "设备关闭原始数据", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.Raw_data_closed), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.opt_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.STOP_COLLECT){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "设备停止采集", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.collect_stoped), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "操作失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.opt_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
@@ -287,43 +300,43 @@ public class MainActivity extends Activity{
 					else if(method == Method.CLOSE_LOWPOWER_WARNING){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "低电量提醒已关闭", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.power_warning_stoped), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "低电量提醒关闭失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.power_warning_stop_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.SET_AUTO_START){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.config_succ), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "设置失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.config_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.SET_ALARM_TIME){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.config_succ), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "设置失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.config_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 					
 					else if(method == Method.GET_DEVICE_VERSION){
 						if(result!=null){
 							String ver = result.toString();
-							Toast.makeText(MainActivity.this, "当前版本：" + ver, Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.current_version) + ver, Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "获取版本失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this,  MainActivity.this.getString(R.string.get_version_fail), Toast.LENGTH_SHORT).show();
 						}
 					}else if(method == Method.LOGOUT){
 						Boolean res = (Boolean) result;
 						if(res){
-							Toast.makeText(MainActivity.this, "登出成功", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this,  MainActivity.this.getString(R.string.logout_succ), Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(MainActivity.this, "登出失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(MainActivity.this, MainActivity.this.getString(R.string.logout_fail), Toast.LENGTH_SHORT).show();
 						}
 					}
 				}

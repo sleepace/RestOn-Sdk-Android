@@ -1,10 +1,8 @@
 package com.restonsdk.demo;
 
 import java.util.ArrayList;
-
-import com.medica.restonsdk.bluetooth.RestOnHelper;
-import com.medica.restonsdk.domain.BleDevice;
-import com.medica.restonsdk.interfs.BleScanListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +15,10 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.medica.restonsdk.bluetooth.RestOnHelper;
+import com.medica.restonsdk.domain.BleDevice;
+import com.medica.restonsdk.interfs.BleScanListener;
 
 public class SearchDeviceActivity extends Activity {
 //	private static final String TAG = SearchDeviceActivity.class.getSimpleName();
@@ -65,7 +67,7 @@ public class SearchDeviceActivity extends Activity {
 		@Override
 		public void onBleScanStart() {
 			// TODO Auto-generated method stub
-			setTitle("正在扫描新设备");
+			setTitle(SearchDeviceActivity.this.getString(R.string.scaning));
 			setProgressBarIndeterminateVisibility(true);
 		}
 
@@ -75,8 +77,12 @@ public class SearchDeviceActivity extends Activity {
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
-					adapter.addItem(device);
+					if(device==null||device.deviceName==null)
+						return;
+					 Pattern p = Pattern.compile("^(Z[1-9]-)[0-9a-zA-Z]{10}$");
+				     Matcher m = p.matcher(device.deviceName);
+				     if(m.matches())
+				    	 adapter.addItem(device);
 				}
 			});
 		}
@@ -87,9 +93,9 @@ public class SearchDeviceActivity extends Activity {
 //			LogUtil.showMsg("onBleScanFinish-----------");
 			setProgressBarIndeterminateVisibility(false);
 			if(adapter.getCount() > 0){
-				SearchDeviceActivity.this.setTitle("请选择要连接的设备");
+				SearchDeviceActivity.this.setTitle(SearchDeviceActivity.this.getString(R.string.select_device));
 			}else{
-				SearchDeviceActivity.this.setTitle("没有扫描到设备");
+				SearchDeviceActivity.this.setTitle(SearchDeviceActivity.this.getString(R.string.no_device));
 			}
 		}
 	};
