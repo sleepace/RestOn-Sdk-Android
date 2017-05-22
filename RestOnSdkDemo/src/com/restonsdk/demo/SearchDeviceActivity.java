@@ -77,12 +77,8 @@ public class SearchDeviceActivity extends Activity {
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					if(device==null||device.deviceName==null)
-						return;
-					 Pattern p = Pattern.compile("^(Z[1-9]-)[0-9a-zA-Z]{10}$");
-				     Matcher m = p.matcher(device.deviceName);
-				     if(m.matches())
-				    	 adapter.addItem(device);
+				
+				    adapter.addItem(device);
 				}
 			});
 		}
