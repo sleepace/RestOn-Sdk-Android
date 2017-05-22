@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="restonsdk_android_v1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/restonsdk_android_v1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

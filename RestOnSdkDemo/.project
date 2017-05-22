@@ -30,4 +30,11 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src1</name>
+			<type>2</type>
+			<location>E:/code_source/SDK/reston-sdk-android-v1.1/RestOnSdkSource/src</location>
+		</link>
+	</linkedResources>
 </projectDescription>
