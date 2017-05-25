@@ -1,6 +1,5 @@
 package com.restonsdk.demo;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -369,9 +368,12 @@ public class MainActivity extends Activity{
 		}
 		
 		@Override
-		public void handleRawData(int[] arg0) {
+		public void handleRawData(float[][] arg0) {
 			// TODO Auto-generated method stub
-			LogUtil.showMsg(TAG+" handleRawData data:" + Arrays.toString(arg0));
+			for(float[] data:arg0){
+				LogUtil.showMsg(TAG+" handleRawData data:" + Arrays.toString(data));
+
+			}
 		}
 	};
 	
