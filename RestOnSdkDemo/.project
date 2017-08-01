@@ -32,9 +32,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>reston_src</name>
+			<name>src_reston</name>
 			<type>2</type>
-			<locationURI>reston_src</locationURI>
+			<location>E:/code_source/SDK/reston-sdk-android-v1.1/RestOnSdkSource/src</location>
 		</link>
 	</linkedResources>
 	<variableList>

@@ -1,8 +1,6 @@
 package com.restonsdk.demo;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -40,6 +38,7 @@ public class SearchDeviceActivity extends Activity {
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(this.mDeviceClickListener);
 		
+		LogUtil.showMsg("main:"+android.os.Process.myTid());
 		bleHelper.scanBleDevice(bleScanListener);
 	}
 	
@@ -77,7 +76,7 @@ public class SearchDeviceActivity extends Activity {
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					if(device.deviceName.startsWith("Z1"))
+					if(device.deviceName.startsWith("TZ"))
 						adapter.addItem(device);
 				}
 			});
@@ -87,12 +86,17 @@ public class SearchDeviceActivity extends Activity {
 		public void onBleScanFinish() {
 			// TODO Auto-generated method stub
 //			LogUtil.showMsg("onBleScanFinish-----------");
-			setProgressBarIndeterminateVisibility(false);
-			if(adapter.getCount() > 0){
-				SearchDeviceActivity.this.setTitle(SearchDeviceActivity.this.getString(R.string.select_device));
-			}else{
-				SearchDeviceActivity.this.setTitle(SearchDeviceActivity.this.getString(R.string.no_device));
-			}
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					setProgressBarIndeterminateVisibility(false);
+					if(adapter.getCount() > 0){
+						SearchDeviceActivity.this.setTitle(SearchDeviceActivity.this.getString(R.string.select_device));
+					}else{
+						SearchDeviceActivity.this.setTitle(SearchDeviceActivity.this.getString(R.string.no_device));
+					}
+				}
+			});
 		}
 	};
 	
