@@ -76,7 +76,7 @@ public class SearchDeviceActivity extends Activity {
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					if(device.deviceName.startsWith("TZ"))
+					//if(device.deviceName.startsWith("TZ"))
 						adapter.addItem(device);
 				}
 			});

@@ -65,4 +65,36 @@ public class FileUtil {
 	  
 	  return null;
 	 }
+	
+	public static void main(String[] args){
+		String oriPath = "F://173_1500825600";
+		  byte[] bb = FileUtil.readFileByByte(oriPath);
+		  /*breathRateAry[i-1] = j;
+		   fread(&j, sizeof(unsigned char), 1, fp);
+		   heartRateAry[i - 1] = j;
+		   fread(&j, sizeof(unsigned char), 1, fp);
+		   statusAry[i - 1] = j;
+		   fread(&j, sizeof(unsigned char), 1, fp);
+		   statusValueAry[i - 1] = j;
+		   */
+		  byte[] breathRateAry = new byte[bb.length/4];
+		  short[] heartRateAry = new short[bb.length/4];
+		  byte[] statusAry = new byte[bb.length/4];
+		  byte[] statusValueAry = new byte[bb.length/4];
+		  int k = 0;
+		  for (int i = 0; i < bb.length; i++) {
+			  if(i!=0&&i%4==0){
+				  k++;
+			  }
+			  if(i%4==0)
+				  breathRateAry[k] = bb[i]; 
+			  if(i%4==1)
+				  heartRateAry[k] = (short)(bb[i]&0xff); 
+			  if(i%4==2)
+				  statusAry[k] = bb[i]; 
+			  if(i%4==3)
+				  statusValueAry[k] = bb[i]; 
+		  }
+		  System.out.println();
+	}
 }

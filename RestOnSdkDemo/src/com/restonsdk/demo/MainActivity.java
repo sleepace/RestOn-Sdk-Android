@@ -53,7 +53,7 @@ public class MainActivity extends Activity{
 	private static final int REQCODE_OPEN_BT = 1;
 	private static final int REQCODE_SEACH_DEVICE = 2;
 	
-	public static final int userId = 137;
+	public static final int userId = 13639;
 	
 	private Summary summary;
 	private Detail detail;
@@ -185,7 +185,7 @@ public class MainActivity extends Activity{
 				}else if(position == 21){//disconnect
 					//restonHelper.disconnect();
 
-					String oriPath = "/storage/emulated/0/200_1500994800";
+					String oriPath = "/storage/emulated/0/173_1502295120";
 					  byte[] bb = FileUtil.readFileByByte(oriPath);
 					  /*breathRateAry[i-1] = j;
 					   fread(&j, sizeof(unsigned char), 1, fp);

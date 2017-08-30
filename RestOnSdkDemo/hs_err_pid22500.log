@@ -1,0 +1,130 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (javaClasses.cpp:136), pid=22500, tid=18636
+#  fatal error: Invalid layout of preloaded class
+#
+# JRE version:  (7.0_75-b13) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.75-b04 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000028a8000):  JavaThread "Unknown thread" [_thread_in_vm, id=18636, stack(0x0000000002a10000,0x0000000002b10000)]
+
+Stack: [0x0000000002a10000,0x0000000002b10000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [kernel32.dll+0x21a0a]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000028a8000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=18636, stack(0x0000000002a10000,0x0000000002b10000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.010 loading class 0x000000000b310780 done
+Event: 0.010 loading class 0x000000000b310180 done
+Event: 0.010 loading class 0x000000000b310160
+Event: 0.010 loading class 0x000000000b3182d0
+Event: 0.010 loading class 0x000000000b3182d0 done
+Event: 0.010 loading class 0x000000000b318300
+Event: 0.010 loading class 0x000000000b318300 done
+Event: 0.010 loading class 0x000000000b318330
+Event: 0.010 loading class 0x000000000b318330 done
+Event: 0.010 loading class 0x000000000b310160 done
+
+
+Dynamic libraries:
+0x000000013f1c0000 - 0x000000013f1f3000 	C:\Program Files\Java\jre7\bin\javaw.exe
+0x00000000779c0000 - 0x0000000077b6a000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00000000778a0000 - 0x00000000779bf000 	C:\Windows\system32\kernel32.dll
+0x000007fefd7d0000 - 0x000007fefd83a000 	C:\Windows\system32\KERNELBASE.dll
+0x000007fef1200000 - 0x000007fef12fb000 	C:\Windows\system32\winhafnt64.dll
+0x00000000777a0000 - 0x000000007789a000 	C:\Windows\system32\USER32.dll
+0x000007fefdac0000 - 0x000007fefdb27000 	C:\Windows\system32\GDI32.dll
+0x000007fefe030000 - 0x000007fefe03e000 	C:\Windows\system32\LPK.dll
+0x000007fefebe0000 - 0x000007fefecaa000 	C:\Windows\system32\USP10.dll
+0x000007fefe630000 - 0x000007fefe6cf000 	C:\Windows\system32\msvcrt.dll
+0x000007feffac0000 - 0x000007feffb9b000 	C:\Windows\system32\ADVAPI32.dll
+0x000007fefe370000 - 0x000007fefe38f000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007feffba0000 - 0x000007feffccd000 	C:\Windows\system32\RPCRT4.dll
+0x000007fefc770000 - 0x000007fefc77c000 	C:\Windows\system32\VERSION.dll
+0x000007fefc0b0000 - 0x000007fefc2a4000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.18837_none_fa3b1e3d17594757\COMCTL32.dll
+0x000007fefecb0000 - 0x000007fefed21000 	C:\Windows\system32\SHLWAPI.dll
+0x000007fefe4a0000 - 0x000007fefe4ce000 	C:\Windows\system32\IMM32.DLL
+0x000007fefe390000 - 0x000007fefe499000 	C:\Windows\system32\MSCTF.dll
+0x000007fef0ea0000 - 0x000007fef11f9000 	C:\Windows\system32\winhadnt64.dll
+0x000007fef8a50000 - 0x000007fef8a68000 	C:\Windows\system32\MPR.dll
+0x000007fefed30000 - 0x000007feffab9000 	C:\Windows\system32\SHELL32.dll
+0x000007fefddd0000 - 0x000007fefdfcc000 	C:\Windows\system32\ole32.dll
+0x000007fefe4d0000 - 0x000007fefe5a8000 	C:\Windows\system32\OLEAUT32.dll
+0x000007fefda70000 - 0x000007fefdabd000 	C:\Windows\system32\WS2_32.dll
+0x000007fefe900000 - 0x000007fefe908000 	C:\Windows\system32\NSI.dll
+0x000007fefcc00000 - 0x000007fefcc5b000 	C:\Windows\system32\Dnsapi.dll
+0x000007fef0cd0000 - 0x000007fef0e94000 	C:\Windows\system32\DtFrame64.dll
+0x0000000180000000 - 0x0000000180031000 	C:\Windows\system32\TIjtdrvd64.dll
+0x000007fef8710000 - 0x000007fef8781000 	C:\Windows\system32\winspool.drv
+0x000007fef0b90000 - 0x000007fef0b99000 	C:\Windows\system32\WinUsb.dll
+0x0000000073a30000 - 0x0000000073b02000 	C:\Program Files\Java\jre7\bin\msvcr100.dll
+0x00000000512b0000 - 0x0000000051a84000 	C:\Program Files\Java\jre7\bin\server\jvm.dll
+0x000007fefbe60000 - 0x000007fefbe69000 	C:\Windows\system32\WSOCK32.dll
+0x000007fefb670000 - 0x000007fefb6ab000 	C:\Windows\system32\WINMM.dll
+0x0000000077b80000 - 0x0000000077b87000 	C:\Windows\system32\PSAPI.DLL
+0x0000000073a20000 - 0x0000000073a2f000 	C:\Program Files\Java\jre7\bin\verify.dll
+0x00000000739f0000 - 0x0000000073a18000 	C:\Program Files\Java\jre7\bin\java.dll
+0x00000000699f0000 - 0x0000000069a25000 	C:\Program Files\Java\jre7\bin\jdwp.dll
+0x000000006a160000 - 0x000000006a168000 	C:\Program Files\Java\jre7\bin\npt.dll
+0x00000000739d0000 - 0x00000000739e5000 	C:\Program Files\Java\jre7\bin\zip.dll
+0x000007fef9b90000 - 0x000007fef9cb5000 	C:\Windows\system32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:52309 -Dfile.encoding=UTF-8 -Xbootclasspath:D:\eclipse android\android-sdk\platforms\android-19\android.jar 
+java_command: com.restonsdk.demo.FileUtil
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.7.0_75
+CLASSPATH=.;C:\Program Files\Java\jdk1.7.0_75\lib\dt.jar;C:\Program Files\Java\jdk1.7.0_75\lib\tools.jar;
+PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;JAVA_HOME\bin;JAVA_HOME\jre\bin;D:\Program Files\apache-maven-3.3.1\bin;C:\strawberry\c\bin;C:\strawberry\perl\bin;C:\Program Files\TortoiseGit\bin;D:\Program Files\TortoiseSVN\bin
+USERNAME=Administrator
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 60 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, erms, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 8257564k(421628k free), swap 16513268k(6216652k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.75-b04) for windows-amd64 JRE (1.7.0_75-b13), built on Dec 18 2014 17:15:01 by "java_re" with unknown MS VC++:1600
+
+time: Thu Aug 10 10:58:46 2017
+elapsed time: 0 seconds
+
